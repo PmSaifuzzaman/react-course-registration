@@ -1,17 +1,23 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { FaReadme } from 'react-icons/fa';
+import Cart from "../Cart/Cart";
 
 const Courses = () => {
   // useState hook for fetched data
   const [allCourses, setAllCourses] = useState([]);
+  const [selectedCourses, setSelectedCourses] = useState([]);
   // useEffect hook for fetching data
   useEffect(() => {
     fetch("./courses.json")
       .then((res) => res.json())
       .then((data) => setAllCourses(data));
   }, []);
-  console.log(allCourses);
+    // Button click function
+    const handleSelectButton = (course) =>{
+        setSelectedCourses([...selectedCourses, course]);
+    }
+    console.log(selectedCourses)   
   return (
     <div className="max-w-7xl mx-auto flex justify-between">
       <div className="card-container grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -27,14 +33,14 @@ const Courses = () => {
               <p className="py-5 ">$ Price : {course.price}</p>
               <p className="flex items-center gap-3"><FaReadme/> Credit : {course.credit} hr</p>
             </div>
-            <button className="btn btn-primary text-white bg-blue-500 w-full p-2 rounded-lg">
+            <button onClick={() =>handleSelectButton(course)} className="btn btn-primary text-white bg-blue-500 w-full p-2 rounded-lg">
               Select
             </button>
           </div>
         ))}
       </div>
       <div className="cart">
-        <h1>Cart</h1>
+        <Cart selectedCourses={selectedCourses}></Cart>
       </div>
     </div>
   );
