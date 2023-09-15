@@ -25,3 +25,7 @@ The React project appears to be a Course Enrollment System or an Educational Cou
         *totalCreditHour: Represents the total credit hours of selected courses.
         *remainingCreditHour: Represents the remaining credit hours (20 - totalCreditHour).
         *totalPrice: Represents the total price of the selected courses.
+
+
+3. **Live Site Link**
+    https://chic-biscochitos-664f9c.netlify.app
