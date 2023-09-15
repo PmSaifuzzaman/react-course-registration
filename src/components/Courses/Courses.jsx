@@ -7,6 +7,8 @@ const Courses = () => {
   // useState hook for fetched data
   const [allCourses, setAllCourses] = useState([]);
   const [selectedCourses, setSelectedCourses] = useState([]);
+  const [totalCreditHour, setTotalCreditHour] = useState(0);
+  const [remainingCreditHour, setRemainingCreditHour] = useState(0);
   // useEffect hook for fetching data
   useEffect(() => {
     fetch("./courses.json")
@@ -15,9 +17,28 @@ const Courses = () => {
   }, []);
     // Button click function
     const handleSelectButton = (course) =>{
-        setSelectedCourses([...selectedCourses, course]);
-    }
-    console.log(selectedCourses)   
+        const isExists = selectedCourses.find((item) => item.id == course.id);
+
+        let count = course.credit;
+
+        if (isExists){
+            return alert("already enrolled");
+        }else{
+            setSelectedCourses([...selectedCourses, course]);
+
+            selectedCourses.forEach((item) =>{
+                count = count + item.credit;
+            });
+            const remainingCreditHour = 20 - count;
+
+            setTotalCreditHour(count);
+            setRemainingCreditHour(remainingCreditHour);
+
+        }
+
+        
+    };
+       
   return (
     <div className="max-w-7xl mx-auto flex justify-between">
       <div className="card-container grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -40,7 +61,10 @@ const Courses = () => {
         ))}
       </div>
       <div className="cart">
-        <Cart selectedCourses={selectedCourses}></Cart>
+        <Cart selectedCourses={selectedCourses}
+         totalCreditHour={totalCreditHour}
+         remainingCreditHour={remainingCreditHour}
+         ></Cart>
       </div>
     </div>
   );
