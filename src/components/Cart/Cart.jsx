@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 const Cart = ({selectedCourses, totalCreditHour, remainingCreditHour, totalPrice}) => {
     console.log(selectedCourses);
     return (
-        <div>
-            <div>
-                <h3>Credit Hour Remaining: {remainingCreditHour}</h3>
-            <h3>Course Name</h3>
+        <div className='w-72 p-6 rounded-xl bg-white'>
+            <div >
+                <h3 className='py-4 text-lg text-blue-500 font-bold'>Credit Hour Remaining {remainingCreditHour} hr</h3>
+                < hr/>
+            <h3 className='py-4 text-xl font-bold'>Course Name</h3>
             </div>
             {
                 selectedCourses.map((course) => (
@@ -15,9 +16,11 @@ const Cart = ({selectedCourses, totalCreditHour, remainingCreditHour, totalPrice
                     
                 ))
             }
+            <br />
             <hr />
-            <p>Total credit Hour:{totalCreditHour}</p>
-            <p>Total Price:{totalPrice}USD</p>
+            <p className='py-4'>Total Credit Hour: {totalCreditHour}</p>
+            <hr />
+            <p className='py-4'>Total Price: {totalPrice} USD</p>
         </div>
     );
 };

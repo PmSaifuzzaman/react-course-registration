@@ -52,8 +52,8 @@ const Courses = () => {
     };
        
   return (
-    <div className="max-w-7xl mx-auto flex justify-between">
-      <div className="card-container grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div className="max-w-7xl mx-auto flex flex-col-reverse gap-4 lg:flex-row lg:justify-between">
+      <div className="card-container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {/* Map all courses dinamically */}
         {allCourses.map((course) => (
           <div key={course.id} className="card w-72 bg-white rounded-xl p-4">
@@ -72,7 +72,7 @@ const Courses = () => {
           </div>
         ))}
       </div>
-      <div className="cart">
+      <div className="cart mx-auto">
         <Cart selectedCourses={selectedCourses}
          totalCreditHour={totalCreditHour}
          remainingCreditHour={remainingCreditHour}
