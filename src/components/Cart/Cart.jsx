@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const Cart = ({selectedCourses, totalCreditHour, remainingCreditHour}) => {
+const Cart = ({selectedCourses, totalCreditHour, remainingCreditHour, totalPrice}) => {
     console.log(selectedCourses);
     return (
         <div>
@@ -17,6 +17,7 @@ const Cart = ({selectedCourses, totalCreditHour, remainingCreditHour}) => {
             }
             <hr />
             <p>Total credit Hour:{totalCreditHour}</p>
+            <p>Total Price:{totalPrice}USD</p>
         </div>
     );
 };
@@ -26,6 +27,7 @@ Cart.propTypes = {
     selectedCourses: PropTypes.object.isRequired,
     totalCreditHour: PropTypes.object.isRequired,
     remainingCreditHour: PropTypes.object.isRequired,
+    totalPrice: PropTypes.object.isRequired,
     
 
 };

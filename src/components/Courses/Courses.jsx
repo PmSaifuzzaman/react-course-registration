@@ -9,6 +9,7 @@ const Courses = () => {
   const [selectedCourses, setSelectedCourses] = useState([]);
   const [totalCreditHour, setTotalCreditHour] = useState(0);
   const [remainingCreditHour, setRemainingCreditHour] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
   // useEffect hook for fetching data
   useEffect(() => {
     fetch("./courses.json")
@@ -20,6 +21,7 @@ const Courses = () => {
         const isExists = selectedCourses.find((item) => item.id == course.id);
 
         let count = course.credit;
+        let initialPrice = course.price;
 
         if (isExists){
             return alert("already enrolled");
@@ -31,9 +33,19 @@ const Courses = () => {
             });
             const remainingCreditHour = 20 - count;
 
-            setTotalCreditHour(count);
-            setRemainingCreditHour(remainingCreditHour);
+            selectedCourses.forEach((item) => {
+                initialPrice = initialPrice + item.price
+            });
 
+            if(count > 20){
+                alert("Total credit limit over")
+            }else{
+                setTotalCreditHour(count);
+                setRemainingCreditHour(remainingCreditHour);
+                setTotalPrice(initialPrice);
+            }
+
+            
         }
 
         
@@ -64,6 +76,7 @@ const Courses = () => {
         <Cart selectedCourses={selectedCourses}
          totalCreditHour={totalCreditHour}
          remainingCreditHour={remainingCreditHour}
+         totalPrice={totalPrice}
          ></Cart>
       </div>
     </div>
